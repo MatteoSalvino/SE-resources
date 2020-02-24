@@ -1,0 +1,4 @@
+\contentsline {section}{\numberline {1}Capability Maturity Model Integration}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Understanding levels}{6}{subsection.1.1}
+\contentsline {subsubsection}{\numberline {1.1.1}Capability levels (Continuous representation)}{7}{subsubsection.1.1.1}
+\contentsline {subsubsection}{\numberline {1.1.2}Maturity levels (Staged representation)}{8}{subsubsection.1.1.2}
