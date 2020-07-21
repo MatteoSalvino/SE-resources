@@ -1,0 +1,119 @@
+\section{Effort estimation}
+Effort estimation is a technique used to estimate the effort in order to develop a software project. The idea is the following : given a set of requirements, effort estimation can be seen as a black box, which allows us to derive three important metrics, cost, effort and time. The steps that will follow in order to derive these estimation are :
+\begin{itemize}
+    \item we starts from the requirements and we derive FP
+    \item then we move from FP to Line of Code
+    \item we use LOC to derive two important metrics (time and effort)
+    \item once we have the effort we can derive the cost.
+\end{itemize}
+To derive metrics from LOC we will use a technique called \textbf{Constructive Cost Model (CoCoMo)}. The CoCoMo main idea is to estimate an effort $M$ (the unit can be man-day, man-month or man-year)and the optimal timing $T$ (the unit can be years, months or weeks) for delivering a project. Basically, it relies on statistics and follow a waterfall model. It provides an effort indication on four phases : analysis and planning, design, development, integration and test. From the previous two metrics we can derive another metric called \textbf{manpower}, which represents the number of people working during the project execution ($manpower = \frac{M}{T}$). In CoCoMo we have some adjusted parameters that estimate the context in which the software is developed. Typically, several parameters are evaluated on an ordinal scale with the following values : very low, low, nominal, high, very high and extra high.
+\subsection{1981 model}
+In the 1981 there are three types of models to be used according to the difficulty of the project, and the project can be estimated only in its dimension or according to the correction factors described above (represented here as $c_i$). If we evaluate only the project dimension, assuming that the requirements doesn't change and representing with $S_k$ the estimated lines of code, we have the following formulas :
+\begin{itemize}
+    \item \textbf{Simple} : $M = 2.4 \cdot S_k^{1.05}$ and $T = 2.5 \cdot M^{0.38}$
+    \item \textbf{Intermediate} : $M = 3.0 \cdot S_k^{1.12}$ and $T = 2.5 \cdot M^{0.35}$
+    \item \textbf{Complex} : $M = 3.6 \cdot S_k^{1.2}$ and $T = 2.5 \cdot M^{0.32}$.
+\end{itemize}
+If we consider the global correction coefficients we obtain:
+\begin{itemize}
+    \item \textbf{Simple} : $M = 3.2 \cdot S_k^{1.05} \cdot \prod_{1}^{15} c_i$ and $T = 2.5 \cdot M^{0.38}$
+    \item \textbf{Intermediate} : $M = 3.0 \cdot S_k^{1.12} \cdot \prod_{1}^{15} c_i$ and $T = 2.5 \cdot M^{0.35}$
+    \item \textbf{Complex} : $M = 2.8 \cdot S_k^{1.2} \cdot \prod_{1}^{15} c_i$ and $T = 2.5 \cdot M ^{0.32}$.
+\end{itemize}
+When working with CoCoMo we need to take some assumptions in our project : it's based on waterfall model, $T$ encompasses design-coding-integration and test (requirement analysis and planning are not considered), $MM$ are $152$ hours ($19$ days of $8$ hours), the requirements are stable, it employes adequate personnel and we have a good project management. With our assumptions we have an error $< 20\%$ of about $68\%$ of estimates.
+\subsection{CoCoMo II}
+For this reason, it was proposed a second model called \textbf{CoCoMo II}. The main motivations for this proposal were : new life cycle software models, reuse and different levels of estimation precision.  In CoCoMo II we have two main models :
+\begin{itemize}
+    \item \textbf{Early design model} : it's useful and suitable for the project initial phase. We don't have too much details, i.e. our estimations are only based on FP. We have about $7$ adjusting factors.
+    \item \textbf{Post-architecture model} : it's used for development and maintenance phase. We have more details and information, i.e. we don't consider only the FP but also the possible reuse of the software. We may have until $17$ adjusting factors.
+\end{itemize}
+The two models share $5$ scaling factors for computing the exponents factors :
+\begin{itemize}
+    \item \textbf{Precedentedness (PREC)} : familiarity with the work, given by past similar
+          works, it’s intrinsic to the project and uncontrollable.
+    \item \textbf{Development Flexibility (FLEX)} : flexibility and relaxation during work, intrinsic to the project and uncontrollable.
+    \item \textbf{Architecture / Risk Resolution (RESL)} : combines design thoroughness and risk elimination strategies included in the project.
+    \item \textbf{Team Cohesion (TEAM)} : sources of project turbulence given by difficulties
+          in synchronizing the stakeholders (difficulties created by people involved in the project).
+    \item \textbf{Process Maturity (PMAT)} : process maturity level measured according to the CMM-levels. If CMM-levels are not available the EPML (Estimated Process Maturity Level) is computed as the percentage of compliance to the 18 Key Process Area goals by CMM, according to the following formula: $EPML = 5 - [( \sum_{i=1}^{n} \frac{KPA\%_i}{100} \cdot \frac{5}{18})]$.
+\end{itemize}
+\paragraph{CoCoMo II formulas} Let SCED be the required development schedule, $n$ be either $6 + SCED$ or $16 + SCED$, $EM_i$ be the effort multipliers that adjust the model according to the environment and $A,B,C,D$ constants. We compute the person months, PM , in the following way :
+\begin{center}
+    $PM = A \cdot S^E \cdot \prod_{i}^{n} EM_i$,
+\end{center}
+where $S$ is the estimated size of the project in KLOC. The PM computation requires the computation of the economy/diseconomy of scales, E (in CoCoMo 1981 there were only diseconomies), where $SF_j$ are the five scale factors that CoCoMo II uses :
+\begin{center}
+    $E = B + 0.01 \cdot \sum_{j=1}^{5} SF_j$.
+\end{center}
+The development time $T$ is computed as follows :
+\begin{center}
+    $T = C \cdot PM^F \cdot SCED / 100$\\
+    $F = D + 0.2 \cdot (E - B)$.
+\end{center}
+\paragraph{Effort multipliers} We have $17$ effort multipliers that can be used in the second model and only $7$ of them can be used in the first model, these multipliers are divided in different categories :
+\begin{itemize}
+    \item \textbf{Product} :
+          \begin{itemize}
+              \item \textbf{RELY} : Required product reliability
+              \item \textbf{DATA} : Database size
+              \item \textbf{CPLX} : Product complexity
+              \item \textbf{RUSE} : Intended reuse of software models
+              \item \textbf{DOCU} : Level of required documentation
+          \end{itemize}
+    \item \textbf{System} :
+          \begin{itemize}
+              \item \textbf{TIME} : Execution time constraints
+              \item \textbf{STOR} : Main storage constraint
+              \item \textbf{PVOL} : Platform volatility (change frequency)
+          \end{itemize}
+    \item \textbf{Personal} :
+          \begin{itemize}
+              \item \textbf{ACAP} : Analyst capability
+              \item \textbf{PCAP} : Programmer capability
+              \item \textbf{APEX} : Application experience
+              \item \textbf{PLEX} : Platform experience
+              \item \textbf{LTEX} : Language and tool experience
+              \item \textbf{PCON} : Personnel continuity
+          \end{itemize}
+    \item \textbf{Project} :
+          \begin{itemize}
+              \item \textbf{SITE} : Multisite development
+              \item \textbf{TOOL} : Use of software tools
+              \item \textbf{SCED} : Schedule constraints.
+          \end{itemize}
+\end{itemize}
+All these multipliers make both models very variable when determining the effort needed to develop the project, even if the models have different multipliers. With the CoCoMo II model we can estimate with a good approximation the time necessary to the delivery of the software and the effort that we need to complete the project with a certain delivery time, so we can estimate the cost of the project, tanking into account the cost that we sustain if we write new code and the cost that we have when we reuse some modules.
+\subsection{Software reuse}
+We need to model software reuse since it is not a trivial process, due to the fact that the code we want to reuse can be subject to some modifications and has a certain level of familiarity, readability and documentation. To take into account all these factors we use a non linear module which models the effort to adapt a an existing module as the effort to develop a new module, measuring the equivalent lines of code (ESLOC). This model is based on two aspects :
+\begin{itemize}
+    \item the complexity to adapt software which is derived from :
+          \begin{itemize}
+              \item \textbf{Software understanding (SU)} : how the software is easy to read, understand and modify to be used in the new project in terms of documentation, readability and modularity of the code (from low to high: [50, 40, 30, 20, 10]).
+              \item \textbf{Assessment and Assimilation (AA)} : if the code can be useful for the application and how it documentation can be integrated with the actual product through test, evaluation to process and documentation that needs to be written. (from none to extensive: [0, 2, 4, 6, 8]).
+              \item \textbf{Programmer Unfamiliarity(UNFM)} : of the software to be integrated (from familiar to unfamiliar: [0, 0.2, 0.4, 0.6, 0.8, 1]).
+          \end{itemize}
+    \item the percentage of modification, the \textbf{Adapting Adjusting Factor (AAF)}, which is determined using the following metrics :
+          \begin{itemize}
+              \item \textbf{DM} : percentage of modified design
+              \item \textbf{CM} : percentage of modified code
+              \item \textbf{IM} : percentage of the modification of the integration effort without reusing code.
+          \end{itemize}
+\end{itemize}
+We can compute the Equivalent SLOC in two ways, depending on the adapting adjusting factor (AAF) :
+\begin{center}
+    $AAF = (0.4 \cdot DM) + (0.3 \cdot CM) + (0.3 \cdot IM)$\\$AAM = \systeme{\frac{[AA + AAF \cdot (0.02 \cdot SU \cdot UNFM)]}{100}$ if $AAF \leq 50, \frac{AA + AAF + (SU \cdot UNFM)}{100}$ if $AAF > 50}$.
+\end{center}
+After having computed both the Adaptation adjustment factor and modifier, we have that the estimated KLOCs are :
+\begin{center}
+    $EKLOC = AKLOC \cdot (1 - \frac{AT}{100}) \cdot AAM$,
+\end{center}
+where AKLOC are the adapted lines of code that are modified to be of use in the actual project and $AT$ is the percentage of code that is re-engineered by automatic translation. With this parameter we can compute the relative cost and modification size required to reuse a piece of code in a project.
+\subsection{Backfiring}
+After we have computed our function points we can compute with them the SLOC, in order to do that we can use tables, which indicates the backfiring (the average correspondence between the lines of code SLOC and the function points). The backfiring tables can be consulted from page 59 of CoCoMo slides.
+The LOC estimation can be done using the given data as follows:
+\begin{itemize}
+    \item 51 FP
+    \item C Language
+    \item Backfiring for C language = 128
+    \item LOC = 51 × 128 = 6528 = 6.528 KLOC.
+\end{itemize}

@@ -1,0 +1,15 @@
+\section{User story}
+BDD asks questions about the behavior of the application before and during development to reduce miscommunication. The application's requirements are written as \textbf{user stories}. A user story has the following structure :
+\begin{itemize}
+    \item \textbf{As a} [kind of stakeholder]
+    \item \textbf{So that} [I can achieve some goal]
+    \item \textbf{I want to} [do some task].
+\end{itemize}
+The idea is to use user stories as acceptance test before the code is written. A measure of team productivity could be average number of stories / week ? We have a problem that some stories could be more difficult than others. So, a simple fix is to assign to each user story a rate on a simple integer scale : for example we could assign 1 for simple stories, $2$ for medium stories and $3$ for very complex stories. In this new settings, the velocity is given by the relationship between the average number of points and the week. There are some guidelines in order to define properly a user story. One of those is, if the rate assigned to a user story is greater of equal to $5$, then we could think to split this story into simpler stories. Another guideline which each user story should follows, is the SMART approach :
+\begin{itemize}
+    \item \textbf{Specific and Measurable} : each scenario should be testable. It implies known good input and expected results exist. For example Given some specific starting condition, When i take specific action X, Then one or more specific event should happen.
+    \item \textbf{Achievable} : the ideal case is to complete user stories in one iteration. In real world, this situation never occurs. If we can't deliver feature in one iteration then deliver a subset of stories.
+    \item \textbf{Relevant} : of course, the user stories should represent an important feature. (see also 5 Whys approach). Otherwise we can delete useless stories.
+    \item \textbf{Timeboxed} : naturally if a story exceed the time budget we need to stop it. We can divide it in simpler stories or reschedule what is left undone. This is an important characteristic, because in this way we avoid to underestimate the length of the project.
+\end{itemize}
+When working with customer is useful to present user stories also in graphical form via Lo-Fi UI that give to the customer a high level idea of how the application will looks. Another important aspect is to include also a storyboard, which show how the UI changes based on user actions.
