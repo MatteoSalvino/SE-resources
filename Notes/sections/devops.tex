@@ -1,0 +1,45 @@
+\section{DevOps}
+In simple words, DevOps means a combination of software development operations.
+It's a widespread approach in modern software engineering, in which the operations started to make use of many of the same techniques as developers for their systems work.
+The business problems that emerged during the last year are the following:
+\begin{itemize}
+    \item need more time to respond to market changes
+    \item deployments held off to avoid risks
+    \item slow and error-prone releases
+    \item fix and maintain rather than innovate
+    \item unstable operations as fixes take more time
+    \item IT is frequently seen as the bottleneck in the transition of "concept to cash".
+\end{itemize}
+The symptoms of these problems are that the developers tends always to work on their machine to minimize the risk that the software release is unstable on another platform, is needed to have production environment access to diagnose issues, servers are not available for deployment (it could fail due to incorrect configuration), fix performed after a specific day, releases can have a lot of fails.
+The business trends that move to DevOps are frequent deployments, faster recovery from failures, reduced failure rate, shorter lead times and to reach better customer satisfaction.
+If DevOps is correctly implemented, it increases the velocity, reduces the downtime and human errors.
+DevOps is based on the following principles:
+\begin{itemize}
+    \item in big companies teams are in charge of doing the development of the application. Typically, they change, modify, and test the software. When the application is ready, they move it to the IT operations team. They represent the team in charge of maintaining the operations run on the infrastructure, monitor the server infrastructure performance and this implies that they have to enhance the stability and the maintenance of the service. The fundamental aspect is the quality of this process. We are moving from a single person's responsibility to collective responsibility, shared understanding, and service delivery.
+    \item DevOps is a set of practices that emphasize the collaboration and communication of both software developers and IT professionals while automating the process of software delivery and infrastructure changes. Its goal is to bridge the gap between agile software development and operations. This is possible by unifying people, processes, and products to have continuous delivery of value to our end users.
+    \item the basic idea is that the code should be managed in a code repository, i.e. a remote repository accessible by all developers and people involved in the process. Then there should be an automatic building process and testing process. Then we have the deployment process managed in a structured way (e.g. through a database), and finally, it will be monitored and potentially improved.
+\end{itemize}
+The current software development situation is constituted by well-separated areas: business, development, and operations.
+In this case, each area doesn't communicate too much with the other ones.
+The idea with DevOps is that the business moves and we have a unique team that manages the development and the operations.
+The \textbf{continuous integration} is a fundamental aspect in DevOps, since it's the process of integrating code into a mainline code-base.
+Its main key elements are: version/source control, frequent commits, build automation as well the testing, test outcome results availability, code, and build stability, code-quality, and coverage.
+In this ways the bugs are detected very early, we have immediate feedback on the system-wide impact of local changes, we have constant availability of the current build for testing, demo or release purposes, enforces the discipline of frequent automated testing and allow to have faster time to release with a repeatable process.
+However, it has also some disadvantages such as: automated test suites require a considerable amount of work to set-up and also for ongoing needs, work involved to set-up a build system, the added value depends on the quality of tests and how testable the code is, build queueing up can slow down everyone and partial code could easily be pushed and therefore integration tests could fail until the feature is complete.
+The \textbf{continuous delivery and deployment} are other important aspects of DevOps.
+The first one means to make sure that your software is always production-ready throughout its entire life cycle, i.e. any build could potentially be released to users at the touch of a button using a fully automated process in a matter of seconds or minutes.
+Continuous deployment is the practice of releasing every good build to users.
+It deploys every change that passes the automated tests to production and is the next phase of continuous delivery.
+\newline\newline
+There are $9$ types of DevOps tools which are known before choosing for the project:
+\begin{itemize}
+    \item \textbf{Collaboration tools}: this type of tool is crucial to help teams working together more easily, regardless of time zones or location. It's a rapid action-oriented communication designed to share knowledge and save time
+    \item \textbf{Planning tools}: this type of tool is designed to provide transparency to stakeholders and participants.
+    \item \textbf{Source control tools}: tools of this sort make up the building blocks for the entire process ranging across all key assets.
+    \item \textbf{Issue tracking tools}: these tools increase responsiveness and visibility.
+    \item \textbf{Configuration management tools}: without this type of tool, it would impossible to enforce desired state norms or achieve any sort of consistency at scale.
+    \item \textbf{Database DevOps tools}: the database needs to be an honored member of the managed resources family.
+    \item \textbf{Continuous integration tools}: this type of tool provide an immediate feedback loop by regularly merging code.
+          \textbf{Automated testing tools}:  tools of this sort are tasked with verifying code quality before passing the build.
+    \item \textbf{Deployment tools}: these tools are essential to checking those boxes.
+\end{itemize}

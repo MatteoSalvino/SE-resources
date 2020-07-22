@@ -1,0 +1,53 @@
+\section{Domain Driven Design}
+It's a way of thinking and a set of priorities, whose objective is to accelerate software projects that have to deal with complicated domains.
+DDD's main idea is to adopt a model-driven software design approach used to tackle the complexity of software projects.
+This means that DDD is also a collection of principles and patterns that allow developers to build very elegant and maintainable systems.
+The definitions of DDD are the following:
+\begin{itemize}
+    \item \textbf{Domain}: it's a sphere of knowledge or activity. What an organization does and the world it does it in.
+    \item \textbf{Model}: it's a system of abstractions that describes specific aspects of a domain and ignores extraneous details. The idea of a model is to explain a complex domain in a simple way. A model is a distilled form of domain knowledge, assumptions, rules, and choices.
+\end{itemize}
+In particular, the DDD main principles are:
+\begin{itemize}
+    \item speak a ubiquitous language within an explicitly bounded context. A ubiquitous language is a language structured around the domain model and used by all team members to connect all the activities of the team with the software. It should be used consistently in speech, documentation, diagrams, and code. The idea is that if we adopt a change in our language then it should be reflected in the model and code, and vice versa.
+    \item explore models in a creative collaboration of domain practitioners and software practitioners.
+    \item focus on the core domain.
+    \item model and implementation are bound (the developers are also responsible for the model).
+\end{itemize}
+The model can be expressed through class diagrams, (UML is the preferred way), sequence diagrams, etc.
+This design document is not the model, is how we communicate and explain the model.
+The model is ultimately expressed in the code.
+Another important aspect of DDD is that it's agile and iterative.
+The problem here is with the \textbf{Big Design Up Front} approach.
+In this approach at the beginning, we have domain experts and business analysts who create the analysis model and then hand it over the developers (usually it's done in UML).
+Then in the first iteration, the team of developers starts to have the initial code model that matches the analysis model.
+In the successive iterations the model evolves with the abstraction, for example, the team discovers an issue with the analysis model and develops away from it and the analysis model starts to become useless.
+There is no feedback loop, the descriptive domain terms are lost and the insight that we get is not transferred in the model.
+In the end, the code model no longer reflects the analysis model.
+The DDD process we work in a different way: at the beginning, we should have the stakeholders that communicate the business goals and the input and outputs of the system, and a development team which captures them as business use cases.
+Then there is the knowledge crunching phase, in which domain experts and the development team produce a model that satisfies the needs of business use cases.
+This model should simplify reality as much as needed to understand the problem domain.
+We have our UML model, we code it, but when we change our code we need to change also the analysis model to keep it in sync with the code model.
+This is the main idea of the so-called \textbf{One Team, One Language, One Model} principle.
+The DDD's second principle is based on the idea of breaking down a complex domain, which in turn is based on the bounded context concept.
+It's an operational definition of where a particular model is well-defined and applicable.
+Typically this can be mapped to a subsystem, i.e. it's a part of the domain, based on a particular conceptual decomposition of the domain.
+Typically when we use DDD the architecture we want to enforce is the layered one, which divides the layers in:
+\begin{itemize}
+    \item \textbf{User interface}: it's responsible for presenting information to the user and interpreting the user commands.
+    \item \textbf{Application}: it's a thin layer that coordinates the application activity. It doesn't contain business logic, it doesn't hold the state of the business objects.
+    \item \textbf{Domain}: this layer contains information about the domain. This is the heart of the business software. The state of the business objects is held here. We need to keep in mind that the persistence details are delegated to the infrastructure layer.
+    \item \textbf{Infrastructure} : this layer acts as a supporting library for all the other layers. it should provide the communication between layers, implement persistence for business objects, etc.
+\end{itemize}
+In DDD the models expressed in the software are the following:
+\begin{itemize}
+    \item \textbf{Entities}: they are objects which have an identity that remains the same throughout the states of the software. Basically, this is the way to distinguish similar objects having the same attributes. The attributes of an entity can change. The entities should have a behavior, but no persistence behavior.
+    \item \textbf{Value object}: they are the "things" within your model that have no uniqueness. They are only equal to another value object if all their attributes match. They are immutable (the attributes must be replaced).
+    \item \textbf{Aggregates}: it's a cluster of entities and value objects. The idea is that each aggregate is treated as one single unit. Each aggregate has one root entity know as the \textbf{aggregate root}. The root identity is global, the identities of entities inside are local. The external objects may have references only to root. The internal objects cannot be changed outside the aggregate.
+    \item \textbf{Associations}: they are relationships between concepts, imposing traversal direction. It adds qualifiers to reduce the multiplicity and eliminate non-essential associations.
+    \item \textbf{Services}: they are those elements that reside in multiple layers. Services usually manipulate multiple entities and value objects. They are stateless. A service should be offered as an interface that is defined as a part of the model. Its parameters and results should be domain objects.
+    \item \textbf{Factories}: it's an object whose responsibility is the creation of other objects. It creates and manages complex domain objects. It's very useful for creating aggregates.
+    \item \textbf{Repositories}: it encapsulates domain objects' persistence and retrieval. We have a clean separation and one-way dependency between the domain and data mapping layers. It acts as a collection except for some elaborate querying capability. We should have one repository for aggregate.
+    \item \textbf{Modules}: they break up our domain to reduce the complexity. There is a high cohesion within the module, loose coupling between modules. It becomes part of the ubiquitous language and helps with extensibility.
+    \item \textbf{Context mapping}: it's a mapping between the contact points and translations between bounded contexts.
+\end{itemize}

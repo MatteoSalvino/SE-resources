@@ -1,0 +1,63 @@
+\section{Software Development Process Models}
+Software products are not tangible.
+To manage a software project, the project manager needs special methods.
+So, the monitoring process is based on the explicit definition of activities to be performed and documents to be produced.
+These documents allow us to monitor the progress of the process and give us an idea of its quality.
+Software Development Process Models and their instances, differ from each other for the required activities and the produced documents.
+Now, we will see several software process models, discussing their pros and cons.
+
+\subsection{Waterfall model}
+A Waterfall model is a typical process in which there are separate and distinct phases of specification and development.
+So, first, we describe all the specifications of the software and then we have a subsequent phase that takes care about development.
+Its main phases are:
+\begin{itemize}
+    \item \textbf{Requirements analysis and definition}
+    \item \textbf{System and software design}
+    \item \textbf{Implementation and unit testing}
+    \item \textbf{Integration and system testing}
+    \item \textbf{Operation and maintenance}.
+\end{itemize}
+Each phase depends on the deliverables of the previous one and corresponds to a specialization of tasks.
+One of its main drawbacks is the difficulty of allows changes after the process is started.
+Another drawback is that the users don't have a vision of the overall system (uncertainty).
+So, they have to wait until a working version of the system is available.
+In turn, programmers have to wait for the analysis phase before starting their job.
+The solution is to use an iterative approach.
+
+\subsection{Process iteration}
+The system requirements always evolve during the project development, so process iteration where earlier stages are reworked is always part of the process for large systems.
+Iteration can be applied to any of the generic process models.
+Typically, an iteration follows one of the following approaches:
+\begin{itemize}
+    \item \textbf{Incremental delivery}: we start building a small system (prototype) and next we enlarge it (incremental way). A \textbf{prototypal model} is constituted by a customer interaction to obtain customer's requirements, then we build a prototype also called \textbf{mock-up}  (when we build a system with feels and looks similar to the final system, but without working software behind), and then we present it to the user, in order that he can test the prototype and say "Ok, I'm satisfied", or vice versa. If the answer is positive, then we can start to implement the functionality behind the mockup. The \textbf{incremental model} is formed by iterations which are constituted by analysis, design, implementation, and test phases. The result of a generic iteration $i$ typically is the system with version $i$. It's very similar to the prototypal model but in this case the intermediate version is full working and it allows for a more accurate design. Its main drawback is that if we figure out a wrong functionality in a specific system version, we have to throw away a lot of jobs previously done, whereas in the first model we will build only the mock-up system. In the incremental development, we define the requirements, then we assign each of them to a specific system release version, design the whole system architecture, then develop, validate and integrate the system increment, and finally validate the system. If this isn't the last iteration, then we continue to increment the functionality of our system; otherwise, we have built the final system. In other words, delivering part of the required functionality. Then the user requirements are prioritized and the highest priority requirements are included in early increments (early versions). Once the development of an increment is started, the requirements are frozen though requirements for later increments can continue to evolve. The trade-off is the length of these iterations, the bigger the interval is then we move towards the waterfall model, the smaller the interval is then will be more difficult to build a very good software architecture. Its advantages are the following: the customer can see at each iteration an increment of the system functionalities, early increments act as a prototype to help to ask requirement for future iterations, lower risk of overall project failure, and the highest priority system requirements tends to receive the most testing.
+    \item \textbf{Spiral development}: in spiral development, the process is represented as a spiral (rather than a sequence) of activities. Each loop in the spiral represents a phase in the process. There not exist fixed phases such as specification or design (the loops in the spiral are chosen depending on what is required). The risks are explicitly evaluated and resolved throughout the process. In particular, the spiral model is constituted by the following sectors:
+          \begin{itemize}
+              \item \textbf{Objective setting}: they are specific objectives for the current phase.
+              \item \textbf{Risk assessment and reduction}: the risks are evaluated and activities punt in place to reduce the key risks.
+              \item \textbf{Development and validation}: in this sector, we choose a development model for the system.
+              \item \textbf{Planning}: the project is reviewed and the next phase of the spiral is planned.
+          \end{itemize}
+\end{itemize}
+
+\subsection{Formal methods}
+Formal methods are formalisms based on logic or algebra for requirement specification, development, and test.
+They don't use the natural language, because it's very ambiguous, but tends to write the specification of the software in some formal languages like Z, Z++, etc.
+
+\subsection{Extreme programming}
+It's a part of the Agile model family.
+It's an approach based on the development and delivery of very small increments of functionality.
+It relies on constant code improvement, uses involvement in the development team, and pairwise programming.
+
+\subsection{Core process activities}
+Now, lets quickly review the main activities involved in the development process:
+\begin{itemize}
+    \item \textbf{Software specification}: it's the process of establishing what services are required and the constraints on the system operations and development. These requirements can be functional or non-functional (they regard system quality). This process is also called the requirements engineering process. First of all, it performs a feasibility study to understand if building the system is feasible. Typically this phase produces a document called feasibility report. Subsequently, the requirements are defined, analyzed, and validated. The results of these phases constitute the so-called requirement document.
+    \item \textbf{Software design and implementation}: it's the process of converting the system specification into an executable system. The software design phase is a process in which we design the software structure (architectural, component, data structures, etc.) that fulfill the specifications. In the implementation phase, we translate the previous structure into an executable program. In this phase, our goal is also to remove as many errors as possible from the program generated, typically using a program testing. These two phases are closely related and may be interleaved.
+    \item \textbf{Software validation}: the verification and validation are intended to show that the system is conform to its specifications (verification) and meets the customer's requirements (validation). Typically the system is tested over test cases that are derived from the specification of the real data to be processed by the system. We can use several types of testing:
+          \begin{itemize}
+              \item \textbf{Unit test}: individual components are tested independently.
+              \item \textbf{System test}: test the whole system.
+              \item \textbf{Acceptance test}: testing with customer data to check that the system meets the customer's needs.
+          \end{itemize}
+    \item \textbf{Software evolution}: software is very flexible and can change over time. A change of the requirements must be reflected also in the software.
+\end{itemize}

@@ -1,0 +1,67 @@
+\section{Function points}
+Function points are a method that allows software engineers to evaluate the dimension of software projects to give an estimation of how much time and how much is the cost to be required to the client.
+Typically, to measure the software, there are different software metrics:
+\begin{itemize}
+    \item \textbf{Direct metrics}: they are those that we can measure directly on the software. Some of them are the following:
+          \begin{itemize}
+              \item \textbf{Line of Code (LOC)}: the number of lines of code that has been written.
+              \item \textbf{McCabe index}: it's an index to measure the complexity of the software, i.e. how much cycles and decision points are present in the software.
+              \item \textbf{Transactional (FP)}: the number of transactions that the software has to perform.
+          \end{itemize}
+    \item \textbf{Indirect metrics}: they are those that we can derive for example by basing on the SLA or those that are considered the users' opinions.
+\end{itemize}
+The metrics that deal with dimensions are mainly based on LOC.
+It appears very simple to compute because is just looking at the source code of a program and count how many lines have been written.
+During the years have been proposed other metrics and, in particular, one of them that is still widely used is the \textbf{function points (FP)}.
+It's an empirical formula based on functionalities.
+The concept when we develop a program is the following: we have an application that is the one being considered. This application interacts from one side with the users and on the other side interacts with possibly other applications.
+The idea of FP is to evaluate our application at the border, which is the border between software and users. We consider measuring what is inside.
+To perform this measure we will consider the following measurements:
+\begin{itemize}
+    \item \textbf{Internal logical file (ILF)}: it's defined as a user-identifiable group of logically related data or control information maintained within the boundary of the application. The primary intent of an ILF is to hold data maintained through one or more elementary processes of the application being counted.
+    \item \textbf{External interface file (EIF)}: it's defined as a user identifiable group of logically related data or control information referenced by the application, but maintained within the boundary of another application. The primary intent of an EIF is to hold data referenced through one or more elementary processes within the boundary of the application counted. This means an EIF counted for an application must be in an ILF in another application.
+    \item \textbf{External input (EI)}: it's an elementary process that processes data or control information that comes from outside the application boundary. The primary intent of an EI is to maintain one or more ILFs and/or to alter the behavior of the system.
+    \item \textbf{External output (EO)}: it's an elementary process that sends data or control information outside the application boundary. The primary boundary of an external output is to present information to a user through processing logic other than, or in addition to, the retrieval of data or control information. The processing logic must contain at least one mathematical formula or calculation, create derived data maintain one or more ILFs, or alter the behavior of the system.
+    \item \textbf{External inquiry (EQ)}: it's an elementary process that sends data or control information outside the application boundary. The primary intent of an EQ is to present information to a user through the retrieval of data or control information from an ILF or EIF. The processing logic contains no mathematical formulas or calculations, and doesn't create derived data. No ILF is maintained during the processing, nor is the behavior of the system altered.
+\end{itemize}
+The FP are weighted on the basis of three weights: \textbf{Low}, \textbf{Medium} and \textbf{High}.
+We create an adjusted FP, i.e. when we have calculated the non-weighted FP, the empirical formula says that we can change $\pm 35\%$ through a corrective formula that captures general characteristics of the system through a set of $14$ indicators.
+Typically, for each indicator, we need to consider if it's not relevant or essential.
+Each indicator takes a value between $0$ and $5$. The formula for the AFP is the following:
+\begin{center}
+    $AFP = Total \times (0.65 + 0.01 \times \sum_{i=1}^{14} F_i)$.
+\end{center}
+The FP advantages are the following: they are widely used and accepted, certified personnel is available, the calculation is objective, UFP is independent on the technology, they can be used early in the development process and are equally accurate as SLOC.
+However, they also have some bad points such as they are semantically difficult, they are incomplete, there is a lack of automatic count and there are many different versions.
+Let's start talking about the components of data functionalities (ILF and EIF):
+\begin{itemize}
+    \item \textbf{Data element type (DET)}: it's a user identifiable single field within an ILF/EIF.
+    \item \textbf{Record element type (RET)}: it's a user identifiable group of fields within an ILF/EIF.
+\end{itemize}
+Naturally, the way of computing the complexity of an ILF or EIF is to count the number of RET/DET that we may derive from it. Now, let's deal about the components of the transactions (EI, EO, and EQ):
+\begin{itemize}
+    \item \textbf{File type referenced (FTR)}: we will count how many references to ILF or EIF we consider.
+    \item \textbf{Data element type (DET)}: as before.
+\end{itemize}
+Let's see an example on this topic.
+Our goal is to build an invoice data. The sales division wants to handle the following customer's information: name, FC, IVA, legal address, corresponding address, phone, and invoices.
+Then for each invoice, we have an invoice number, the issue, and payment date. Then, for each item, we want to have the description, the number of items bought, IVA percentage, and unit cost.
+All the information about an item comes from an external application.
+The first task is to estimate the FP of an application for CRUD operations.
+The customer search is carried out using the FC, while that of invoices is done by considering the invoice number.
+The second task is to print an invoice from the screen and visualize it.
+The third task is to print a customer at the screen and visualize it.
+One approach is not to deal only at a low level, but to have also a conceptual schema (like ER schema or UML class diagram).
+At this point, is simpler to evaluate an ILF for customer and invoice and an EIF for an item.
+For the customer how many records do we have?
+For the customer, we have $6$ DET and $1$ RET.
+For the invoice, we have $4$ DET (including also $\#$items) and $1$ RET.
+Instead, for the item, we have $3$ DET and $1$ RET.
+Now, according to the ILF/EIF complexity table, we obtain for the two ILF a low complexity, which corresponds to $14$ FP taking as value $7$. In the same way, we obtain for the EIF a low complexity as well, which corresponds to $5$ FP, taking as value $5$.
+If we switch to the transactional part, we will have 6 EI: insert, delete, and update both for customer and invoice.
+Looking at the complexity, we will have for customer $1$ FTR for all the previous operations, and $6$, $1$ and $5$ DET respectively.
+For the invoice, we will have $1$ FTR for the delete operation, $3$ FTR for insert and update operation, and $1$, $8$ and $7$ DET respectively.
+The transaction complexity for insert and update operation are high: We will have $4$ EI with low complexity and $2$ EI with high complexity, with $12$ FP each.
+For EO we will $3$ FTR and $10$ DET, and according to the complexity table, we will figure out that it has a medium complexity, which corresponds to $5$ FP.
+Then we have $1$ EQ, to which correspond $1$ FTR and $6$ DET. It has a low complexity, which corresponds to $3$ FP.
+If we sum up all the FP obtained so far, we get $51$ UFP.
